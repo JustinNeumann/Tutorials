@@ -1,0 +1,57 @@
+<h1>Dynamic Background Images Using Only CSS</h1>
+
+<p>Sometimes you can&#8217;t get away from images. Even with a focus on designing for the web there are times when the design simply calls for an image based background. Thanks to the incredible array of different screen sizes and resolution, getting that background image to seamlessly flow across experiences can be quite difficult.</p>
+
+<figure>
+  <img src="intro.jpg" alt="Different screen dimension examples" />
+  <figcaption>Different screen dimension examples</figcaption>
+</figure>
+
+
+
+<p>While media queries can also be way to tackle the larger issue of image size, it can be harder to make the images completely fluid. Most solutions that I have seen for this issue involve some not-so-pretty javascript. This javascript finds the screen width on load and resizes the image accordingly. Usually the script will also recalculate each time the user resizes the browser window. </p>
+
+<div class="demobtns">
+  <a href="#">Demo</a> <a href="#">Download</a>
+</div>
+
+<h2>Our Example</h2>
+
+<p>This example uses no javascript and relies on simple percentage based widths along with absolute positioning. This is by far the smallest code example I have ever used in a tutorial.</p>
+
+<h3>HTML</h3>
+
+<pre>
+  <body>
+    <img class="bg" src="webbies.jpg" />
+  </body>
+</pre>
+
+<p>Here we are putting an image into our markup. It simply needs to be a child of the element that will receive the background image. In our case we are scaling this to the size of the entire page; so it is just inside the <code><body></code> tag.</p>
+
+<h3>CSS</h3>
+
+<pre>
+  .bg {
+    position: absolute;
+      left: 0;
+      top: 0;
+    width: 100%;
+  }
+</pre>
+
+<p>Here we are simply positioning the image absolutely. This removes it from the normal flow of the document so that it will not affect the positioning of other elements. Setting the left and top values anchor it to the (you guessed it) top left corner of the body. Finally, we set the width to 100%, causing the image to automatically scale to the full width of the parent element.</p>
+
+<p><em>Note: Fixed position also works but it isn&#8217;t supported on iOS devices prior to iOS 5.</em></p>
+
+<h3>What To Watch</h3>
+
+<p>1. When an element is positioned absolutely, the values set will be factored relative to the next parent element with either absolute or relative positioning applied. If none are found, it will climb up the DOM all the way back to the <code><html></code> element. So if you were using this technique to set the background on a specific div, that specific div would need to have an absolute or relative positionin applied to it.</p>
+
+<p>2. Be wary of how your page is most likely to be viewed. As seen in the demo, depending on the dimensions of the background image, the image can easily be too short or too narrow in certain experiences. Also, you wouldn&#8217;t actually want to load a 2560x1600 image on a mobile device.</p>
+
+<p>3. Along with making sure your image is not too big, be careful that it is not too small. An extremely pixelated image as the page background can easily make a good design look bad.</p>
+
+<h2>Before you pull out your semantic soapbox&#8230;</h2>
+
+<p>I am absolutely prudish about keeping my code clean and semantic. I understand that this is technically putting an element of style into your markup rather than keeping it within the CSS. Unfortunately, sometimes in real-world situations, the developers do not have all the power and compromises must be made. I personally much prefer this solution to the javascript solutions (which most likely would be injecting something into the DOM anyway).</p>
